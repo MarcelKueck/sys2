@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: workspace_matching
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./packages/supabase/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  supabase:
+    image: supabase/studio:latest
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: workspace_matching
+    ports:
+      - "3001:3000"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

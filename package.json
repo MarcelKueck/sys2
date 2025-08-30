@@ -1,27 +1,27 @@
 {
-  "name": "sys2",
-  "version": "0.1.0",
+  "name": "workspace-matching-platform",
+  "version": "1.0.0",
   "private": true,
+  "packageManager": "yarn@4.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "dev": "yarn workspace next dev",
+    "build": "yarn workspace next build",
+    "start": "yarn workspace next start",
+    "lint": "yarn workspace next lint",
+    "format": "yarn workspace next format",
+    "type-check": "yarn workspace next type-check",
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-compose down",
+    "db:reset": "yarn workspace supabase db:reset"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "@biomejs/biome": "^1.8.3",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.7"
   }
 }
