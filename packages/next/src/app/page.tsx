@@ -42,9 +42,9 @@ export default function HomePage() {
             communities, and grow together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8" asChild>
-              <Link href="/auth/signup?role=applicant">
-                Find a Space <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="text-lg px-8 bg-pink-600 hover:bg-pink-700" asChild>
+              <Link href="/apply/basic-info">
+                Join Our Innovation Ecosystem <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8" asChild>
@@ -108,9 +108,9 @@ export default function HomePage() {
           <p className="text-slate-300 mb-8 text-lg">
             Join hundreds of companies who have found their ideal workspace partners
           </p>
-          <Button size="lg" className="text-lg px-8" asChild>
-            <Link href="/auth/signup">
-              Start Matching Today <ArrowRight className="ml-2 h-5 w-5" />
+          <Button size="lg" className="text-lg px-8 bg-pink-600 hover:bg-pink-700" asChild>
+            <Link href="/apply/basic-info">
+              Join Our Innovation Ecosystem <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
