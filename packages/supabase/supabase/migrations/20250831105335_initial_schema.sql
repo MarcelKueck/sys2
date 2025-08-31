@@ -145,6 +145,11 @@ ALTER TABLE applications ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own profile" ON profiles FOR
 SELECT USING (auth.uid () = id);
 
+CREATE POLICY "Users can insert their own profile" ON profiles FOR
+INSERT
+WITH
+    CHECK (auth.uid () = id);
+
 CREATE POLICY "Users can update their own profile" ON profiles FOR
 UPDATE USING (auth.uid () = id);
 
@@ -294,75 +299,3 @@ CREATE TRIGGER calculate_application_match_score
     BEFORE INSERT OR UPDATE ON applications
     FOR EACH ROW
     EXECUTE FUNCTION update_match_score();
-
--- Insert sample data
-INSERT INTO
-    profiles (id, email, role)
-VALUES (
-        '550e8400-e29b-41d4-a716-446655440001',
-        'pixida@example.com',
-        'space_provider'
-    ),
-    (
-        '550e8400-e29b-41d4-a716-446655440002',
-        'startup@example.com',
-        'applicant'
-    );
-
-INSERT INTO space_providers (profile_id, company_name, tagline, description, looking_for, offers, values, team_size, founded_year, industry_focus) VALUES 
-    ('550e8400-e29b-41d4-a716-446655440001', 'Pixida GmbH', 'Innovation through Technology', 'Leading technology consulting company specializing in digital transformation and innovation.', 
-     ARRAY['Innovative startups', 'Tech companies', 'Digital agencies'], 
-     ARRAY['Mentorship', 'Technical expertise', 'Network access', 'Funding connections'],
-     ARRAY['Innovation', 'Collaboration', 'Excellence', 'Sustainability'],
-     150, 2012, ARRAY['Technology', 'Automotive', 'IoT', 'AI/ML']);
-
-INSERT INTO
-    spaces (
-        provider_id,
-        name,
-        type,
-        size_sqm,
-        capacity,
-        available_from,
-        monthly_price,
-        description,
-        location
-    )
-VALUES (
-        (
-            SELECT id
-            FROM space_providers
-            WHERE
-                profile_id = '550e8400-e29b-41d4-a716-446655440001'
-        ),
-        'Innovation Lab Munich',
-        'office',
-        120,
-        8,
-        '2024-01-01',
-        2500.00,
-        'Modern office space perfect for innovative teams working on cutting-edge technology.',
-        '{"address": "Maximilianstraße 35", "city": "Munich", "postal_code": "80539", "lat": 48.1392, "lng": 11.5802}'
-    );
-
-INSERT INTO
-    applicants (
-        id,
-        company_name,
-        company_stage,
-        team_size,
-        industry,
-        description,
-        looking_for,
-        can_offer
-    )
-VALUES (
-        '550e8400-e29b-41d4-a716-446655440002',
-        'TechStart AI',
-        'mvp',
-        5,
-        'Technology',
-        'AI-powered startup building the future of automated customer service.',
-        'Mentorship in scaling AI products, technical infrastructure support, and access to enterprise clients.',
-        'Cutting-edge AI expertise, fresh perspectives on automation, and potential collaboration on AI projects.'
-    );

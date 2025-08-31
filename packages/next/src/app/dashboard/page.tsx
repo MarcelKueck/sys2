@@ -1,6 +1,29 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
-import { Building2, MessageSquare, TrendingUp, Users } from "lucide-react";
+import { 
+  Building2, 
+  MessageSquare, 
+  TrendingUp, 
+  Users, 
+  Edit3, 
+  Upload, 
+  Star, 
+  Clock, 
+  CheckCircle, 
+  AlertCircle,
+  Plus,
+  Camera,
+  Globe,
+  Linkedin,
+  Calendar,
+  DollarSign,
+  MapPin,
+  Phone,
+  Mail
+} from "lucide-react";
+import ApplicantDashboard from "@/components/dashboard/ApplicantDashboard";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -10,7 +33,7 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return null;
+    redirect("/auth/signin");
   }
 
   const { data: profile } = await supabase
@@ -19,6 +42,12 @@ export default async function DashboardPage() {
     .eq("id", user.id)
     .single();
 
+  // If this is an applicant, show the dedicated applicant dashboard
+  if (profile?.role === "applicant") {
+    return <ApplicantDashboard />;
+  }
+
+  // For space providers, show the original dashboard
   // Get some basic stats
   const { count: spacesCount } = await supabase
     .from("spaces")
@@ -39,9 +68,7 @@ export default async function DashboardPage() {
           Welcome back, {user.email?.split("@")[0]}!
         </h1>
         <p className="text-gray-600 mt-2">
-          {profile?.role === "space_provider"
-            ? "Manage your spaces and review applications"
-            : "Discover perfect workspaces and track your applications"}
+          Manage your spaces and review applications
         </p>
       </div>
 
@@ -116,37 +143,18 @@ export default async function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {profile?.role === "space_provider" ? (
-              <>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <h3 className="font-medium text-gray-900">Add New Space</h3>
-                  <p className="text-sm text-gray-600">
-                    List a new workspace for companies to discover
-                  </p>
-                </div>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <h3 className="font-medium text-gray-900">Review Applications</h3>
-                  <p className="text-sm text-gray-600">
-                    Check new applications from interested companies
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <h3 className="font-medium text-gray-900">Complete Profile</h3>
-                  <p className="text-sm text-gray-600">
-                    Fill out your company details to get better matches
-                  </p>
-                </div>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <h3 className="font-medium text-gray-900">Browse Spaces</h3>
-                  <p className="text-sm text-gray-600">
-                    Discover workspaces that match your company culture
-                  </p>
-                </div>
-              </>
-            )}
+            <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+              <h3 className="font-medium text-gray-900">Add New Space</h3>
+              <p className="text-sm text-gray-600">
+                List a new workspace for companies to discover
+              </p>
+            </div>
+            <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+              <h3 className="font-medium text-gray-900">Review Applications</h3>
+              <p className="text-sm text-gray-600">
+                Check new applications from interested companies
+              </p>
+            </div>
           </div>
         </CardContent>
       </Card>

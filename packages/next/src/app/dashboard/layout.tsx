@@ -25,6 +25,17 @@ export default async function DashboardLayout({
     .eq("id", user.id)
     .single();
 
+  // Get applicant data for header display
+  let applicantData = null;
+  if (profile?.role === "applicant") {
+    const { data } = await supabase
+      .from("applicants")
+      .select("company_name")
+      .eq("id", user.id)
+      .single();
+    applicantData = data;
+  }
+
   const handleSignOut = async () => {
     "use server";
     const supabase = await createClient();
@@ -39,13 +50,18 @@ export default async function DashboardLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Building2 className="h-8 w-8 text-pink-600" />
+              <Building2 className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">WorkspaceMatch</span>
             </div>
 
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">{user.email}</span>
-              <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded-full">
+              <div className="text-right">
+                <div className="text-sm font-medium text-gray-900">
+                  {applicantData?.company_name || user.email?.split("@")[0]}
+                </div>
+                <div className="text-xs text-gray-500">{user.email}</div>
+              </div>
+              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                 {profile?.role === "space_provider" ? "Provider" : "Applicant"}
               </span>
               <form action={handleSignOut}>
@@ -64,7 +80,7 @@ export default async function DashboardLayout({
           <div className="flex space-x-8">
             <Link
               href="/dashboard"
-              className="py-4 px-2 border-b-2 border-pink-500 text-pink-600 font-medium text-sm"
+              className="py-4 px-2 border-b-2 border-blue-500 text-blue-600 font-medium text-sm"
             >
               Dashboard
             </Link>
@@ -111,6 +127,22 @@ export default async function DashboardLayout({
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <div className="flex items-center space-x-6 text-sm text-gray-500">
+              <a href="#" className="hover:text-gray-700">Help Center</a>
+              <a href="#" className="hover:text-gray-700">Contact Support</a>
+              <a href="#" className="hover:text-gray-700">Privacy Policy</a>
+            </div>
+            <div className="mt-4 sm:mt-0 text-sm text-gray-500">
+              © 2025 WorkspaceMatch. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
