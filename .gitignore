@@ -46,3 +46,4 @@ coverage/
 
 # Supabase
 packages/supabase/.env
+.vercel

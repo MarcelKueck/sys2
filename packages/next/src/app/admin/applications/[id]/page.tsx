@@ -21,13 +21,14 @@ import {
 } from "lucide-react";
 
 interface ApplicationDetailProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function ApplicationDetail({ params }: ApplicationDetailProps) {
   const supabase = await createClient();
+  const { id } = await params;
 
   const { data: application, error } = await supabase
     .from("applications")
@@ -36,7 +37,7 @@ export default async function ApplicationDetail({ params }: ApplicationDetailPro
       applicants (*),
       space_providers (*)
     `)
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (error || !application) {

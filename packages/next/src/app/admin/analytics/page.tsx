@@ -55,7 +55,7 @@ export default async function AnalyticsPage() {
   const totalApplications = applications?.length || 0;
   const acceptedApplications = applications?.filter(app => app.status === "accepted").length || 0;
   const pendingApplications = applications?.filter(app => app.status === "pending").length || 0;
-  const averageMatchScore = scoreDistribution?.length > 0 
+  const averageMatchScore = scoreDistribution && scoreDistribution.length > 0 
     ? Math.round(scoreDistribution.reduce((sum, app) => sum + (app.match_score || 0), 0) / scoreDistribution.length)
     : 0;
 
@@ -170,7 +170,7 @@ export default async function AnalyticsPage() {
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm font-medium text-gray-900 w-8">{count}</span>
+                    <span className="text-sm font-medium text-gray-900 w-8">{String(count)}</span>
                   </div>
                 </div>
               );
@@ -185,7 +185,7 @@ export default async function AnalyticsPage() {
         <ChartCard title="Match Score Distribution">
           <div className="space-y-4">
             {Object.entries(scoreRanges).map(([range, count]) => {
-              const percentage = scoreDistribution?.length > 0 ? ((count as number) / scoreDistribution.length) * 100 : 0;
+              const percentage = scoreDistribution && scoreDistribution.length > 0 ? ((count as number) / scoreDistribution.length) * 100 : 0;
               const getColor = (range: string) => {
                 if (range === "80-100") return "bg-green-500";
                 if (range === "60-79") return "bg-yellow-500";

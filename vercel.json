@@ -1,0 +1,39 @@
+{
+  "name": "workspace-matching-platform",
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/next/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/admin/(.*)",
+      "dest": "/packages/next/admin/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/packages/next/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "ADMIN_SECRET": "@admin_secret"
+  },
+  "build": {
+    "env": {
+      "NEXT_TELEMETRY_DISABLED": "1"
+    }
+  },
+  "functions": {
+    "packages/next/src/app/api/**": {
+      "maxDuration": 30
+    }
+  }
+}

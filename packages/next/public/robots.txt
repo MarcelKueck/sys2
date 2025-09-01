@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /admin
+Disallow: /api
+
+# Allow specific public pages
+Allow: /auth/signin
+Allow: /auth/signup
+Allow: /providers/pixida
+
+# Sitemap
+Sitemap: https://workspace-matching.com/sitemap.xml
