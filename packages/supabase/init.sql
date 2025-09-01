@@ -148,6 +148,17 @@ SELECT USING (auth.uid () = id);
 CREATE POLICY "Users can update their own profile" ON profiles FOR
 UPDATE USING (auth.uid () = id);
 
+CREATE POLICY "Admins can view all profiles" ON profiles FOR
+SELECT USING (
+        EXISTS (
+            SELECT 1
+            FROM profiles
+            WHERE
+                id = auth.uid ()
+                AND role = 'admin'
+        )
+    );
+
 -- Space providers policies
 CREATE POLICY "Space providers can view their own data" ON space_providers FOR
 SELECT USING (profile_id = auth.uid ());
@@ -158,6 +169,17 @@ UPDATE USING (profile_id = auth.uid ());
 CREATE POLICY "Authenticated users can view space providers" ON space_providers FOR
 SELECT USING (
         auth.role () = 'authenticated'
+    );
+
+CREATE POLICY "Admins can view all space providers" ON space_providers FOR
+SELECT USING (
+        EXISTS (
+            SELECT 1
+            FROM profiles
+            WHERE
+                id = auth.uid ()
+                AND role = 'admin'
+        )
     );
 
 -- Spaces policies
@@ -197,6 +219,17 @@ SELECT USING (
         )
     );
 
+CREATE POLICY "Admins can view all applicants" ON applicants FOR
+SELECT USING (
+        EXISTS (
+            SELECT 1
+            FROM profiles
+            WHERE
+                id = auth.uid ()
+                AND role = 'admin'
+        )
+    );
+
 -- Applications policies
 CREATE POLICY "Applicants can view their applications" ON applications FOR
 SELECT USING (applicant_id = auth.uid ());
@@ -223,6 +256,28 @@ UPDATE USING (
         FROM space_providers
         WHERE
             profile_id = auth.uid ()
+    )
+);
+
+CREATE POLICY "Admins can view all applications" ON applications FOR
+SELECT USING (
+        EXISTS (
+            SELECT 1
+            FROM profiles
+            WHERE
+                id = auth.uid ()
+                AND role = 'admin'
+        )
+    );
+
+CREATE POLICY "Admins can update all applications" ON applications FOR
+UPDATE USING (
+    EXISTS (
+        SELECT 1
+        FROM profiles
+        WHERE
+            id = auth.uid ()
+            AND role = 'admin'
     )
 );
 
@@ -299,6 +354,11 @@ CREATE TRIGGER calculate_application_match_score
 INSERT INTO
     profiles (id, email, role)
 VALUES (
+        '550e8400-e29b-41d4-a716-446655440000',
+        'admin@workspacematching.com',
+        'admin'
+    ),
+    (
         '550e8400-e29b-41d4-a716-446655440001',
         'pixida@example.com',
         'space_provider'

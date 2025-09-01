@@ -62,8 +62,15 @@ export default async function DashboardLayout({
                 <div className="text-xs text-gray-500">{user.email}</div>
               </div>
               <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                {profile?.role === "space_provider" ? "Provider" : "Applicant"}
+                {profile?.role === "space_provider" ? "Provider" : profile?.role === "admin" ? "Admin" : "Applicant"}
               </span>
+              {profile?.role === "admin" && (
+                <Link href="/admin">
+                  <Button variant="outline" size="sm">
+                    Admin Panel
+                  </Button>
+                </Link>
+              )}
               <form action={handleSignOut}>
                 <Button variant="ghost" size="sm" type="submit">
                   <LogOut className="h-4 w-4" />

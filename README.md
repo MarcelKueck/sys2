@@ -155,6 +155,65 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/workspace_matching
 ```
 
+## 👨‍💼 Admin Management
+
+The platform includes a comprehensive admin dashboard for managing applications, users, and analytics.
+
+### Admin Dashboard Features
+
+- **Statistics Overview**: Real-time platform metrics and KPIs
+- **Applications Management**: View, filter, and manage all applications with advanced search
+- **Detailed Application Views**: Complete application details with match scoring breakdown
+- **Kanban Matching Queue**: Visual workflow management (New → Under Review → Shortlisted → Accepted/Rejected)
+- **Analytics Dashboard**: Performance metrics, charts, and data insights
+- **Settings Panel**: Platform configuration and admin tools
+
+### Creating Admin Accounts
+
+#### Method 1: API Endpoint (Recommended)
+Use the admin creation API endpoint with the admin secret:
+
+```bash
+curl -X POST http://localhost:3000/api/admin/create \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@workspacematching.com",
+    "password": "your-secure-password",
+    "adminSecret": "ADMIN_SECRET_2024"
+  }'
+```
+
+#### Method 2: Database Direct Access
+If you have direct database access, you can create admin accounts manually:
+
+```sql
+-- First, create the auth user (use Supabase Auth)
+-- Then create the profile record:
+INSERT INTO public.profiles (id, email, role, created_at, updated_at) 
+VALUES (
+  'auth-user-id-here',
+  'admin@example.com', 
+  'admin', 
+  NOW(), 
+  NOW()
+);
+```
+
+### Admin Access
+
+1. **Login**: Use admin credentials at `/auth/signin`
+2. **Dashboard**: Access admin features via the "Admin Panel" button in the dashboard header
+3. **Direct Access**: Navigate to `/admin` for the full admin dashboard
+
+### Admin Security
+
+- Admin routes are protected by middleware authentication
+- Role-based access control ensures only admin users can access admin features
+- Admin account creation requires a secret key for security
+- All admin actions are logged and auditable
+
+**Note**: The admin secret (`ADMIN_SECRET_2024`) should be changed in production and stored securely.
+
 ## 🤝 Contributing
 
 1. Fork the repository
