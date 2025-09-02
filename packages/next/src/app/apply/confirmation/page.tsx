@@ -35,7 +35,7 @@ export default function ConfirmationPage() {
   const selectedSpaceNames = formData.spaceSelection.selectedSpaces.map(spaceId => {
     // Mock data mapping (in real app this would come from API)
     const spaceMap: Record<string, string> = {
-      "pixida-innovation-lab": "Innovation Lab Munich",
+      "pixida-collaboration-lab": "Collaboration Lab Munich",
       "pixida-creative-hub": "Creative Hub Munich",
     };
     return spaceMap[spaceId] || spaceId;
@@ -52,7 +52,7 @@ export default function ConfirmationPage() {
           Application Submitted Successfully!
         </h1>
         <p className="text-lg text-gray-600">
-          Welcome to the WorkspaceMatch Innovation Ecosystem
+          Welcome to the ShareYourSpace Collaboration Ecosystem
         </p>
       </div>
 

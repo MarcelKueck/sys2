@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Workspace Matching Platform"
   },
   description: "Connect innovative companies with perfect workspace partners. AI-powered matching for optimal collaboration between space providers and growing businesses.",
-  keywords: ["workspace", "office space", "coworking", "business collaboration", "innovation", "Munich", "startup space"],
+  keywords: ["workspace", "office space", "coworking", "business collaboration", "collaboration", "Munich", "startup space"],
   authors: [{ name: "Workspace Matching Platform" }],
   creator: "Workspace Matching Platform",
   publisher: "Workspace Matching Platform",

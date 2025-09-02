@@ -12,20 +12,20 @@ export default function HomePage() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center space-x-2">
             <Building2 className="h-8 w-8 text-pink-600" />
-            <span className="text-xl font-bold text-slate-900">WorkspaceMatch</span>
+            <span className="text-xl font-bold text-slate-900">ShareYourSpace</span>
           </div>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/spaces" className="text-slate-600 hover:text-slate-900">
-              Browse Spaces
-            </Link>
             <Link href="/providers" className="text-slate-600 hover:text-slate-900">
-              For Providers
+              Explore Partners
+            </Link>
+            <Link href="/success-stories" className="text-slate-600 hover:text-slate-900">
+              Success Stories
             </Link>
             <Link href="/auth/signin" className="text-slate-600 hover:text-slate-900">
               Sign In
             </Link>
             <Button asChild>
-              <Link href="/auth/signup">Get Started</Link>
+              <Link href="/apply/basic-info">Find Partners</Link>
             </Button>
           </nav>
         </div>
@@ -36,20 +36,20 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
             Find Your Perfect
-            <span className="text-pink-600 block">Workspace Match</span>
+            <span className="text-pink-600 block">Collaboration Partner</span>
           </h1>
           <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-            Connect innovative companies with ideal workspace partners. Discover spaces, build
-            communities, and grow together.
+            Connect with like-minded companies who share your vision. Build strategic partnerships, 
+            collaborate on breakthrough projects, and grow together in shared collaboration spaces.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 bg-pink-600 hover:bg-pink-700" asChild>
               <Link href="/apply/basic-info">
-                Join Our Innovation Ecosystem <ArrowRight className="ml-2 h-5 w-5" />
+                Join Our Collaboration Network <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8" asChild>
-              <Link href="/auth/signup?role=space_provider">List Your Space</Link>
+              <Link href="/auth/signup?role=space_provider">Host Collaboration Partners</Link>
             </Button>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function HomePage() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">
-            Why Choose WorkspaceMatch?
+            Why Choose Collaboration Partnerships?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center">
@@ -67,10 +67,10 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Zap className="h-8 w-8 text-pink-600" />
                 </div>
-                <CardTitle>Smart Matching</CardTitle>
+                <CardTitle>Smart Collaboration Matching</CardTitle>
                 <CardDescription>
-                  AI-powered algorithm matches companies based on culture, values, and collaboration
-                  potential
+                  AI-powered algorithm connects companies based on shared values, complementary skills, 
+                  and collaboration potential - not just space requirements
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -80,9 +80,10 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="h-8 w-8 text-green-600" />
                 </div>
-                <CardTitle>Community Focus</CardTitle>
+                <CardTitle>Collaboration Community</CardTitle>
                 <CardDescription>
-                  Build meaningful connections with like-minded companies and professionals
+                  Join curated collaboration ecosystems where breakthrough ideas emerge from 
+                  strategic partnerships and knowledge sharing
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -92,9 +93,10 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Building2 className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle>Premium Spaces</CardTitle>
+                <CardTitle>Trusted Collaboration Partners</CardTitle>
                 <CardDescription>
-                  Access to high-quality workspaces from trusted providers like Pixida GmbH
+                  Connect with established collaboration leaders like Pixida GmbH who prioritize 
+                  collaboration value over rental income
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -105,13 +107,13 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4 bg-slate-900">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Ready to Find Your Perfect Match?</h2>
+          <h2 className="text-3xl font-bold text-white mb-6">Ready to Find Your Collaboration Partner?</h2>
           <p className="text-slate-300 mb-8 text-lg">
-            Join hundreds of companies who have found their ideal workspace partners
+            Join hundreds of companies who have found strategic partnerships that accelerate collaboration
           </p>
           <Button size="lg" className="text-lg px-8 bg-pink-600 hover:bg-pink-700" asChild>
             <Link href="/apply/basic-info">
-              Join Our Innovation Ecosystem <ArrowRight className="ml-2 h-5 w-5" />
+              Join Our Collaboration Network <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
@@ -124,23 +126,23 @@ export default function HomePage() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Building2 className="h-6 w-6 text-pink-600" />
-                <span className="font-bold text-slate-900">WorkspaceMatch</span>
+                <span className="font-bold text-slate-900">ShareYourSpace</span>
               </div>
               <p className="text-slate-600 text-sm">
-                Connecting innovative companies with perfect workspace solutions.
+                Connecting innovative companies through strategic workspace partnerships.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-slate-900 mb-4">Platform</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">Partnership</h3>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li>
-                  <Link href="/spaces">Browse Spaces</Link>
+                  <Link href="/providers">Explore Partners</Link>
                 </li>
                 <li>
-                  <Link href="/providers">For Providers</Link>
+                  <Link href="/success-stories">Success Stories</Link>
                 </li>
                 <li>
-                  <Link href="/how-it-works">How It Works</Link>
+                  <Link href="/how-partnerships-work">How Partnerships Work</Link>
                 </li>
               </ul>
             </div>
@@ -174,7 +176,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t mt-8 pt-8 text-center text-sm text-slate-600">
-            © 2024 WorkspaceMatch. All rights reserved.
+            © 2024 ShareYourSpace. All rights reserved.
           </div>
         </div>
       </footer>

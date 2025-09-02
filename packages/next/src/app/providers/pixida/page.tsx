@@ -29,7 +29,7 @@ export default function PixidaProfilePage() {
   const spaces = [
     {
       id: 1,
-      name: "Innovation Lab Munich",
+      name: "Collaboration Lab Munich",
       size: "120sqm",
       capacity: "15-20 people",
       availability: "Available from Q1 2025",
@@ -44,10 +44,10 @@ export default function PixidaProfilePage() {
       ],
       amenities: ["wifi", "kitchen", "parking", "printer"],
       images: [
-        "/api/placeholder/600/400?text=Innovation+Lab+Main+Space",
-        "/api/placeholder/600/400?text=Innovation+Lab+Meeting+Area",
-        "/api/placeholder/600/400?text=Innovation+Lab+Tech+Zone",
-        "/api/placeholder/600/400?text=Innovation+Lab+Collaboration+Space",
+        "/api/placeholder/600/400?text=Collaboration+Lab+Main+Space",
+        "/api/placeholder/600/400?text=Collaboration+Lab+Meeting+Area",
+        "/api/placeholder/600/400?text=Collaboration+Lab+Tech+Zone",
+        "/api/placeholder/600/400?text=Collaboration+Lab+Collaboration+Space",
       ],
     },
     {
@@ -174,10 +174,10 @@ export default function PixidaProfilePage() {
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">Pixida</h1>
             <p className="text-xl md:text-2xl font-light mb-6 text-blue-100">
-              Where Innovation Meets Mittelstand Excellence
+              Where Collaboration Meets Mittelstand Excellence
             </p>
             <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-blue-50">
-              Join Germany's leading innovation consultancy in creating the future of mobility,
+              Join Germany's leading collaboration consultancy in creating the future of mobility,
               manufacturing, and digital transformation. Let's build tomorrow, together.
             </p>
 

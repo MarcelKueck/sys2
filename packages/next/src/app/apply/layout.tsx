@@ -17,7 +17,7 @@ export default function ApplyLayout({
             <Link href="/" className="flex items-center space-x-2">
               <ArrowLeft className="h-5 w-5" />
               <Building2 className="h-8 w-8 text-pink-600" />
-              <span className="text-xl font-bold text-slate-900">WorkspaceMatch</span>
+              <span className="text-xl font-bold text-slate-900">ShareYourSpace</span>
             </Link>
             <div className="text-sm text-slate-600">
               Need help? <Link href="/contact" className="text-pink-600 hover:underline">Contact us</Link>
